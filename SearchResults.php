@@ -6,10 +6,9 @@
   <link href="./newBookings.css" rel="stylesheet" />
 </head>
 <body>
-	<form method="get" action="search.php">
-		<label for="search">Search:</label>
-		<input type="text" id="search" name="q">
-		<input type="submit" value="Search">
-	</form>
+	<a href="newBookings.php">None of these results work for you? Try a different date!</a>
 </body>
+<footer>
+  <p>&copy; 2023 Spynx Inc. All rights reserved. For Copyright concerns, please contact CEO Christopher Lanclos.</p>
+</footer>
 </html>

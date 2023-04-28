@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hotel Booking Website</title>
+	<title>Create a new booking!</title>
 	<link rel="stylesheet" href="newBookings.css">
     <link href="./newBookings.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
