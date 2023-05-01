@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 11:22 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 02, 2023 at 01:21 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,6 +50,13 @@ CREATE TABLE `booking` (
   `LOCATION_NUMBER` int(11) NOT NULL,
   `ROOM_NUBER` varchar(48) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`BOOKING_KEY`, `USERNAME`, `BOOKING_COST`, `BOOKING_DATE`, `BOOKING_DURRATION`, `BOOKING_NOTES`, `BOOKING_FOOD`, `LOCATION_NUMBER`, `ROOM_NUBER`) VALUES
+(1, 'MyKell', 149.99, '2023-05-03', 3, 'first book', 0, 1, '101');
 
 -- --------------------------------------------------------
 
@@ -168,6 +175,21 @@ CREATE TABLE `room` (
   `NOTES` mediumtext NOT NULL,
   `ROOM_PHOTOS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`LOCATION_NUM`, `ROOM_NUMBER`, `ROOM_TYPE`, `ROOM_COST`, `BOOKING_KEY`, `AMENITY_CODE`, `NOTES`, `ROOM_PHOTOS`) VALUES
+(1, '101', 'Single', 149.99, 1, 1, 'First floor room #101 Single ', 0),
+(1, '102', 'Double', 209.99, 2, 1, 'Two bedroom', 0),
+(1, '103', 'Conjoined Double', 249.99, 3, 1, 'Two bedroom one bed each first floor', 0),
+(1, '201', 'Single', 149.99, 1, 1, 'Second floor room #101 Single ', 0),
+(1, '202', 'Double', 209.99, 2, 1, 'Two bedroom Second floor', 0),
+(1, '203', 'Conjoined Double', 249.99, 3, 1, 'Two bedroom one bed each second floor', 0),
+(1, '301', 'Single', 149.99, 1, 1, 'Third floor room #101 Single ', 0),
+(1, '302', 'Double', 209.99, 2, 1, 'Two bedroom Third floor', 0),
+(1, '303', 'Conjoined Double', 249.99, 3, 1, 'Two bedroom one bed each third floor', 0);
 
 -- --------------------------------------------------------
 
