@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 02, 2023 at 01:29 AM
+-- Generation Time: May 02, 2023 at 01:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,16 @@ CREATE TABLE `amenity` (
   `DESCRIPTION` mediumtext NOT NULL,
   `AVAILABILITY` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `amenity`
+--
+
+INSERT INTO `amenity` (`AMENITY_CODE`, `DESCRIPTION`, `AVAILABILITY`) VALUES
+(1, 'Airport Shuttle', 1),
+(2, 'Meeting Room Rental', 1),
+(3, 'Business Center ', 1),
+(4, 'Late Check-Out', 1);
 
 -- --------------------------------------------------------
 
