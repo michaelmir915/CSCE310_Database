@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hotel`
+-- Database: `CSCE310`
 --
 
 -- --------------------------------------------------------
@@ -95,6 +95,25 @@ CREATE TABLE `food` (
   `FOOD_NOTES` mediumtext NOT NULL,
   `FOOD_LOCATION_NOTES` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `food`
+--
+
+INSERT INTO `food` (`LOCATION_NUMBER`, `ITEM_NUMBER`, `COST`, `FOOD_NAME`, `FOOD_INGREDIENTS`, `FOOD_AVAILABILITY`, `FOOD_NOTES`, `FOOD_LOCATION_NOTES`) VALUES
+(1, 1, 8.99, 'Cheeseburger', 'Beef Patty, American Cheese, Lettuce, Tomato, Pickles, Onions', 9999, '', ''),
+(1, 2, 3.99, 'Fries', 'Potatoes, Salt', 9999, '', ''),
+(1, 3, 2.99, 'Potato Chips', 'Potatoes, Salt, Pepper', 9999, '', ''),
+(1, 4, 9.99, 'Caesar Salad', 'Romaine lettuce, Croutons, Parmesan cheese', 9999, '', ''),
+(1, 5, 10.99, 'Club Sandwich', 'Bacon, Lettuce, Tomato, Chicken, Mayo', 9999, '', ''),
+(1, 6, 17.99, 'New York Strip Steak', 'New York strip steak, mashed potatoes, grilled asparagus, and red wine sauce', 9999, '', ''),
+(1, 7, 12.99, 'Chicken Parmesan', 'Breaded chicken breast, tomato sauce, mozzarella cheese, parmesan cheese, and spaghetti pasta', 9999, '', ''),
+(1, 8, 6.99, 'Chocolate Cake', 'Chocolate cake, chocolate frosting, and optionally whipped cream and berries', 9999, '', ''),
+(1, 9, 7.99, 'Tiramisu', 'Layers of ladyfingers soaked in espresso and liquor, with a creamy mixture of mascarpone cheese, sugar, and whipped cream, dusted with cocoa powder on top', 9999, '', ''),
+(1, 10, 1.99, 'Bottled Water', 'Filtered water', 9999, '', ''),
+(1, 11, 2.99, 'Soft Drink', 'Your choice of Coke, Sprite, Ginger Ale, Sweet, or Unsweet Tea', 9999, '', ''),
+(1, 12, 4.99, 'Domestic Beer', 'Your choice of Budweiser, Miller Lite, Coors Light, Bud Light, Yuengling Lager, and Shiner Bock', 9999, '', ''),
+(1, 13, 5.99, 'Imported Beer', 'Your choice of Corona Extra, Heineken, Stella Artois, Guinness Draught, Dos Equis, and Modelo Especial', 9999, '', '');
 
 -- --------------------------------------------------------
 
