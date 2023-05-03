@@ -46,7 +46,8 @@
       echo '<input type="hidden" name="checkout" value="'.$_POST['checkout'].'">';
       echo '<input type="hidden" name="room_number" value="'.$row['ROOM_NUMBER'].'">';
       // echo '<input type="hidden" name="booking_cost" value="'.$row['room_cost'].'">';  
-      echo '<input type="hidden" name="booking_cost" value="'.$row['ROOM_COST'].'">';    
+      echo '<input type="hidden" name="booking_cost" value="'.$row['ROOM_COST'].'">';   
+      echo '<input type="hidden" name="location_number" value="'.$row['LOCATION_NUM'].'">';    
       echo "<a href='currentBookings.php'><button>Book Now</button></a><br><br>";
       echo '</form><br><br>';
     }

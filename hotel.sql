@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 02, 2023 at 01:37 AM
+-- Host: 127.0.0.1
+-- Generation Time: May 03, 2023 at 05:00 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4 
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,20 +53,20 @@ CREATE TABLE `booking` (
   `BOOKING_KEY` int(11) NOT NULL,
   `USERNAME` varchar(48) NOT NULL,
   `BOOKING_COST` double NOT NULL,
-  `BOOKING_DATE` date NOT NULL,
-  `BOOKING_DURRATION` int(11) NOT NULL,
+  `BOOKING_START` date NOT NULL,
+  `BOOKING_END` date NOT NULL,
   `BOOKING_NOTES` text NOT NULL,
   `BOOKING_FOOD` int(11) NOT NULL,
   `LOCATION_NUMBER` int(11) NOT NULL,
-  `ROOM_NUBER` varchar(48) NOT NULL
+  `ROOM_NUMBER` varchar(48) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`BOOKING_KEY`, `USERNAME`, `BOOKING_COST`, `BOOKING_DATE`, `BOOKING_DURRATION`, `BOOKING_NOTES`, `BOOKING_FOOD`, `LOCATION_NUMBER`, `ROOM_NUBER`) VALUES
-(1, 'MyKell', 149.99, '2023-05-03', 3, 'first book', 0, 1, '101');
+INSERT INTO `booking` (`BOOKING_KEY`, `USERNAME`, `BOOKING_COST`, `BOOKING_START`, `BOOKING_END`, `BOOKING_NOTES`, `BOOKING_FOOD`, `LOCATION_NUMBER`, `ROOM_NUMBER`) VALUES
+(1, 'MyKell', 149.99, '2023-05-03', '2023-05-08', 'Hate this room\r\n', 0, 1, '101');
 
 -- --------------------------------------------------------
 
@@ -301,6 +301,16 @@ ALTER TABLE `room`
 --
 ALTER TABLE `user_hotel`
   ADD PRIMARY KEY (`ACCOUNT_NUMBER`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `BOOKING_KEY` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
