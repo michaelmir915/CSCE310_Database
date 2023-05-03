@@ -19,7 +19,6 @@
 					<th>Item</th>
 					<th>Description</th>
 					<th>Price</th>
-					<th>Quantity</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -46,15 +45,30 @@
 				    while($row = mysqli_fetch_assoc($result)) {
 				        echo "<tr>";
 				        echo "<td>" . $row["FOOD_NAME"] . "</td>";
-				        echo "<td>" . $row["INGREDIENTS"] . "</td>";
+				        echo "<td>" . $row["FOOD_INGREDIENTS"] . "</td>";
 				        echo "<td>$" . $row["COST"] . "</td>";
-				        echo '<td><input type="number" value="0"></td>';
-				        echo '<td><button>Add to cart</button></td>';
+				        // echo '<td><input type="number" value="0"></td>';
+				        // echo '<td><button>Add to cart</button></td>';
+						echo '<td>
+              					<form method="post">
+              					    <input type="hidden" name="itemName" value="' . $row["FOOD_NAME"] . '">
+              					    <button type="addToCart">Add to cart</button>
+              					</form>
+          					 </td>';
 				        echo "</tr>";
 				    }
 				} else {
 				    echo "0 results";
 				}
+				
+				// if (isset($_POST['addToCart'])){
+				// 	$sql = 
+				//Need to know current guest to attribute to room number
+				// 	$location_number = 
+				// 	$item_number = 
+				// 	$order_number = 
+				// 	$room_number  = 
+				// }
 
 				mysqli_close($conn);
 			?>
