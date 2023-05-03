@@ -3,59 +3,10 @@
 <html>
 <head>
 	<title>Search Results</title>
-  <link rel="stylesheet" href="newBookings.css">
-  <link href="./newBookings.css" rel="stylesheet" />
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-			font-family: Arial, sans-serif;
-			font-size: 14px;
-      color: black;
-		}
-
-		th, td {
-			text-align: center;
-			padding: 10px;
-			border: 1px solid #ddd;
-		}
-
-		th {
-			background-color: #f2f2f2;
-			color: #333;
-		}
-
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-
-		.cancel-button {
-			background-color: red;
-			color: #fff;
-			padding: 8px 16px;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-
-		.cancel-button:hover {
-			background-color: #ff4d4d;
-		}
-
-		.notes-button {
-			background-color: #4CAF50;
-			color: #fff;
-			padding: 8px 16px;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-
-		.notes-button:hover {
-			background-color: #46a049;
-		}
-	</style>
-</head>
+  <!-- <link rel="stylesheet" href="nmanageBookings.css">
+  <link href="./manageBookings.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" type="text/css" href="manageBooking.css">
+	
 </head>
 <body>
 	<h1>Booking Management</h1>
@@ -107,28 +58,34 @@
 				echo "<td>" . $row['BOOKING_FOOD'] . "</td>";
 				echo "<td>" . $row['LOCATION_NUMBER'] . "</td>";
 				echo "<td>" . $row['ROOM_NUMBER'] . "</td>";
-        echo '<input type="submit" name="cancel_booking" value="Cancel Booking">';
+				echo "<td>";
+				echo "<form method='post' action='manageBookings.php'>";
+				echo "<input type='hidden' name='booking_key' value='" . $row['BOOKING_KEY'] . "'>";
+				echo "<input type='submit' name='cancel_booking' value='Cancel Booking'>";
+				echo "</form>";
+				echo "</td>";
 				echo "</tr>";
 			}
 		} else {
 			// User has no bookings
 			echo "<tr><td colspan='7'>You have no bookings.</td></tr>";
 		}
-    // Cancel booking
-if (isset($_POST['cancel_booking'])) {
-  $booking_key = $_POST['booking_key'];
-  $query = "DELETE FROM booking WHERE booking_key = '$booking_key'";
-  $result = mysqli_query($connection, $query);
-
-  if ($result) {
-      // Booking was canceled
-      echo '<script>alert("Booking Cancelled")</script>';
-      echo "<meta http-equiv='refresh' content='0;url=manageBookings.php'>";
-  } else {
-      // Cancellation failed
-      echo '<script>alert("Cancellation Failed")</script>';
-    }
-  }
+		
+		// Cancel booking
+		if (isset($_POST['cancel_booking'])) {
+			$booking_key = $_POST['booking_key'];
+			$query = "DELETE FROM booking WHERE booking_key = '$booking_key'";
+			$result = mysqli_query($connection, $query);
+		
+			if ($result) {
+				// Booking was canceled
+				echo '<script>alert("Booking Cancelled")</script>';
+				echo "<meta http-equiv='refresh' content='0;url=manageBookings.php'>";
+			} else {
+				// Cancellation failed
+				echo '<script>alert("Cancellation Failed")</script>';
+			}
+	  }
   if (isset($_POST['booking_key']) && isset($_POST['booking_notes'])) {
     $booking_key = $_POST['booking_key'];
     $booking_notes = $_POST['booking_notes'];
@@ -150,7 +107,7 @@ if (isset($_POST['cancel_booking'])) {
     mysqli_close($connection);
   }
   ?>
-	</table>
+</table>
 </body>
 <footer>
   <p>&copy; 2023 Spynx Inc. All rights reserved. For Copyright concerns, please contact CEO Christopher Lanclos.</p>
