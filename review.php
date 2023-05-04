@@ -82,7 +82,8 @@
             $review_stay_len = $_POST['length_of_stay'];
             $review_create_date = $_POST['review_date'];
             $review_helpful = 1;
-
+            
+            // INSERT QUERY
             $queryy = "INSERT INTO review (REVIEW_ID, LOCATION_NUMBER, USERNAME, REVIEW_TITLE, REVIEW_RATING, REVIEW_BODY, REVIEW_TIME_OF_STAY, REVIEW_DAYS_STAYED, REVIEW_TIME_CREATED, REVIEW_HELPFUL)
                        VALUES ('$review_id', '$location_num', '$username', '$title', '$review_rating', '$review_body', '$review_stay_date', '$review_stay_len', '$review_create_date', '$review_helpful')";
             $result = mysqli_query($conn, $queryy);
@@ -121,9 +122,8 @@
 				die("Connection failed: " . mysqli_connect_error());
 			}
             
-            // TODO: select update insert delete # do one of each Alex
-
 			// SQL query to select all reviews
+            // SELECT QUERY
 			$sql = "SELECT * FROM review";
 			$result = mysqli_query($conn, $sql);
 
@@ -141,15 +141,22 @@
 					echo "<td>" . $row["REVIEW_DAYS_STAYED"] . " days</td>";
                     echo "<td>" . $row["REVIEW_TIME_CREATED"] . "</td>";
                     // echo "<td>" . $row["REVIEW_HELPFUL"] . "</td>";
-
+                    
+                    // DELETE QUERY (check delete-review.php)
                     echo "<td>";
                     echo "<form method='POST' action='delete-review.php'>";
                     echo "<input type='hidden' name='review_id' value='" . $row["REVIEW_ID"] . "'>";
                     echo "<button type='submit' name='delete_review'>Delete</button>";
                     echo "</form>";
+
+                    // UPDATE QUERY (check update-review.php)
+                    echo "<form method='POST' action='edit-review.php'>";
+                    echo "<input type='hidden' name='review_id1' value='" . $row["REVIEW_ID"] . "'>";
+                    echo "<input type='text' name='edited_review_body' value='" . $row["REVIEW_BODY"] . "'>";
+                    echo "<input type='submit' value='Update review'>";
+                    echo "</form>";
                     echo "</td>";
 
-					// echo "<td><a href='edit-review.php?id=" . $row["REVIEW_ID"] . "'>Edit</a> | <a href='delete-review.php?id=" . $row["REVIEW_ID"] . "'>Delete</a></td>";
 					echo "</tr>";
 				}
 			} else {
