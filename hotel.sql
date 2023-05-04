@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2023 at 05:00 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 05, 2023 at 12:48 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -146,10 +146,17 @@ CREATE TABLE `food_list` (
 
 CREATE TABLE `guest` (
   `USERNAME` varchar(48) NOT NULL,
-  `CC_NUMBER` int(11) NOT NULL,
+  `CC_NUMBER` tinytext NOT NULL,
   `CC_CCV` int(11) NOT NULL,
-  `CC_EXP` int(11) NOT NULL
+  `CC_EXP` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guest`
+--
+
+INSERT INTO `guest` (`USERNAME`, `CC_NUMBER`, `CC_CCV`, `CC_EXP`) VALUES
+('regularUser', '2250894712345647', 456, '04/22');
 
 -- --------------------------------------------------------
 
@@ -187,24 +194,6 @@ CREATE TABLE `review` (
   `REVIEW_TIME_CREATED` date NOT NULL,
   `REVIEW_HELPFUL` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `room`
---
-
-INSERT INTO `review` (`REVIEW_ID`, `LOCATION_NUMBER`, `USERNAME`, `REVIEW_TITLE`, `REVIEW_RATING`, `REVIEW_BODY`, `REVIEW_TIME_OF_STAY`, `REVIEW_DAYS_STAYED`, `REVIEW_TIME_CREATED`, `REVIEW_HELPFUL`) VALUES 
-(1, 1, 'smittylife', 'Great hotel', 5, 'I had an amazing stay at this hotel. The staff was friendly, the rooms were clean and comfortable, and the location was perfect.', '2022-03-15', 3, '2022-03-20', 10),
-(2, 4, 'lilybelle33', 'Disappointing experience', 2, 'I was very disappointed with my stay at this hotel. The room was dirty, the staff was unfriendly, and the amenities were not as advertised.', '2022-04-01', 2, '2022-04-03', 2),
-(3, 5, 'thecoffeeguru', 'Average hotel', 3, 'This hotel was okay. The room was clean but small, and the staff was average. The location was convenient, but there were some issues with noise.', '2022-05-10', 5, '2022-05-13', 5),
-(4, 3, 'bluerose99', 'Excellent stay', 5, 'I had an excellent stay at this hotel. The room was spacious and comfortable, and the staff was very helpful. The location was also great.', '2022-06-20', 7, '2022-06-25', 20),
-(5, 2, 'spunkykid45', 'Terrible experience', 1, 'I had a terrible experience at this hotel. The room was dirty and smelly, the staff was rude, and the amenities were non-existent. I would never stay here again.', '2022-07-05', 1, '2022-07-06', 0),
-(6, 1, 'rockstar81', 'Wonderful stay', 5, 'I had an amazing time at this location! The staff were friendly, the facilities were clean and comfortable, and the food was delicious. I would definitely recommend this place to anyone looking for a relaxing getaway.', '2022-04-15', 3, '2022-05-03', 10),
-(7, 5, 'happymomma4', 'Disappointing experience', 2, 'I had high hopes for this location, but unfortunately it fell short in many ways. The room was not very clean, the staff were unfriendly, and the food was mediocre at best. I would not recommend this place.', '2022-03-10', 2, '2022-05-02', 2),
-(8, 3, 'greeneyedgirl', 'Great location, but noisy', 4, 'The location of this place was perfect for exploring the city, but unfortunately the noise level was quite high. The walls seemed thin and I could hear my neighbors conversations. Otherwise, everything was great!', '2022-05-01', 5, '2022-05-01', 7),
-(9, 4, 'mountainclimber7', 'Lovely property', 5, 'This property was absolutely gorgeous. The grounds were well-maintained and the room was spacious and comfortable. The staff were also very friendly and helpful. I would definitely stay here again!', '2022-04-20', 2, '2022-04-30', 20),
-(10, 1, 'beachlover23', 'Mixed feelings', 3, 'My stay at this location was a bit of a mixed bag. On the one hand, the staff were very helpful and the room was clean. On the other hand, the facilities were a bit outdated and the location was not very convenient. Overall, an okay experience.', '2022-04-05', 4, '2022-04-29', 5),
-(11, 3, 'craftygal88', 'Wonderful stay', 5, 'I had a fantastic stay at this location. The staff were very friendly and accommodating. The room was clean and comfortable, and the amenities were great. I especially loved the pool and fitness center. The location was also perfect, with easy access to shopping and restaurants. I highly recommend this hotel!', '2022-04-15', 3, '2022-04-19', 23),
-(12, 2, 'bookworm42', 'Disappointing experience', 2, 'Unfortunately, I was very disappointed with my stay at this hotel. The room was not very clean and had a strange odor. The staff were not very friendly or helpful. I also had some issues with the amenities - the pool was closed for maintenance during my stay, and the fitness center was not well-maintained. The location was okay, but there were not many good dining options nearby. Overall, I would not recommend this hotel.', '2022-05-01', 2, '2022-05-04', 5);
 
 -- --------------------------------------------------------
 
@@ -245,7 +234,7 @@ INSERT INTO `room` (`LOCATION_NUM`, `ROOM_NUMBER`, `ROOM_TYPE`, `ROOM_COST`, `BO
 --
 
 CREATE TABLE `user_hotel` (
-  `ACCOUNT_NUMBER` int(11) NOT NULL,
+  `ACCOUNT_NUMBER` bigint(255) NOT NULL,
   `USERNAME` varchar(48) NOT NULL,
   `EMPLOYEE_NUMBER` int(11) DEFAULT NULL,
   `PASSWORD` tinytext NOT NULL,
@@ -255,6 +244,15 @@ CREATE TABLE `user_hotel` (
   `USER_AREA_CODE` int(11) NOT NULL,
   `USER_NUMBER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_hotel`
+--
+
+INSERT INTO `user_hotel` (`ACCOUNT_NUMBER`, `USERNAME`, `EMPLOYEE_NUMBER`, `PASSWORD`, `FIRST_NAME`, `LAST_NAME`, `USER_EMAIL`, `USER_AREA_CODE`, `USER_NUMBER`) VALUES
+(1, 'admin', 0, '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Boss', 'Man', 'bossMan@demo.hotel.com', 800, 5555829),
+(2, 'regularUser', NULL, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Regular', 'User', 'regulardude@rmail.com', 123, 4567890),
+(3, 'mykel', NULL, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Mykel', 'NoLast', 'mykel@defReal.email.gov', 987, 6543210);
 
 --
 -- Indexes for dumped tables
@@ -329,6 +327,12 @@ ALTER TABLE `user_hotel`
 --
 ALTER TABLE `booking`
   MODIFY `BOOKING_KEY` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `user_hotel`
+--
+ALTER TABLE `user_hotel`
+  MODIFY `ACCOUNT_NUMBER` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
