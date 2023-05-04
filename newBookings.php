@@ -3,8 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Create a new booking!</title>
-	<link rel="stylesheet" href="newBookings.css">
-    <link href="./newBookings.css" rel="stylesheet" />
+	<link rel="stylesheet" href="./roomCharges.css" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -45,17 +44,6 @@
 </head>
 
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Hotels</a></li>
-				<li><a href="#">Contact Us</a></li>
-				<li><a href="#">Login</a></li>
-			</ul>
-		</nav>
-	</header>
-
 	<main>
 		<section class="booking">
 			<h2>Book Your Stay</h2>

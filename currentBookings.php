@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>Search Results</title>
-  <link rel="stylesheet" href="newBookings.css">
-  <link href="./newBookings.css" rel="stylesheet" />
+	<link rel="stylesheet" href="./roomCharges.css" type="text/css">
 </head>
 <body>
 <?php

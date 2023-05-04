@@ -5,7 +5,7 @@
 	<title>Search Results</title>
   <!-- <link rel="stylesheet" href="nmanageBookings.css">
   <link href="./manageBookings.css" rel="stylesheet" /> -->
-  <link rel="stylesheet" type="text/css" href="manageBooking.css">
+  <link rel="stylesheet" href="./roomCharges.css" type="text/css">
 	
 </head>
 <body>
@@ -36,6 +36,9 @@
 			<th>Room_Number</th>
 		</tr>
 		<?php
+		//Employee Force Login
+		// Check if the user is logged in, otherwise redirect to login page
+			
     $connection = mysqli_connect("localhost", "root", "", "hotel");
     // Check connection
     if (!$connection) {
