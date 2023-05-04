@@ -1,3 +1,5 @@
+<!-- Alex Tung -->
+
 <?php
 // establish database connection here
 
