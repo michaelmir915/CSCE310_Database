@@ -128,7 +128,7 @@
 				INNER JOIN food_list ON food.LOCATION_NUMBER = food_list.LOCATION_NUMBER AND food.ITEM_NUMBER = food_list.ITEM_NUMBER
 				ORDER BY ORDER_NUMBER";
 				$result = mysqli_query($conn, $sql);
-
+				$total = 0;
 				if (mysqli_num_rows($result) > 0) {
 				    // Output the amenities in a table row
 				    while($row = mysqli_fetch_assoc($result)) {
@@ -146,8 +146,9 @@
               					</form>
 								</td>';
 				    	echo "</tr>";
+						$total += $row["COST"];
 				  	}
-
+					echo "<h3>Total: $$total</h2>";
 				} else {
 				    echo "0 results";
 				}
@@ -190,13 +191,11 @@
 				    while($row = mysqli_fetch_assoc($result)) {
 				        echo "<tr>";
 				        echo "<td>" . $row["DESCRIPTION"] . "</td>";
-				        // echo "<td>" . $row["AVAILABILITY"] . "</td>";
 						if ($row["AVAILABILITY"] == 1){
 							echo "<td>Yes</td>";
 						} else {
 							echo "<td>No</td>";
 						}
-						// echo "<td><button>Check Out</button></td>";
 				    	echo "</tr>";
 				  	}
 
