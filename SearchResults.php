@@ -2,12 +2,14 @@
 <html>
 <head>
 	<title>Search Results</title>
-  <link rel="stylesheet" href="newBookings.css">
-  <link href="./newBookings.css" rel="stylesheet" />
+	<link rel="stylesheet" href="./roomCharges.css" type="text/css">
 </head>
 <body>
   <h2><b> Search Results </b> </h2>
 <?php
+  //Employee Force Login
+  // Check if the user is logged in, otherwise redirect to login page
+
   // Retrieve the check-in and check-out dates from the URL parameters
   $checkin = $_POST['checkin'];
   $checkout = $_POST['checkout'];
