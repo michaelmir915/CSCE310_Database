@@ -1,4 +1,6 @@
 <!-- Alex Tung -->
+<!-- This code allows the customer to view, add, update and delete reviews  -->
+<!-- Functionality Set 4 -->
 
 <!DOCTYPE html>
 <html>
@@ -55,6 +57,19 @@
 
 
     <?php
+        // // Initialize the session
+        // session_start();
+        
+        // // Include config file
+        // require_once "config.php";
+
+        // //Employee Force Login
+        // // Check if the user is logged in, otherwise redirect to login page
+        // if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || is_null($_SESSION[])){
+        //     header("location: login.php");
+        //     exit;
+        // }
+
         // Database connection code
         $dbhost = "localhost";
         $dbuser = "alex9947";

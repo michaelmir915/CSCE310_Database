@@ -1,4 +1,6 @@
 <!-- Alex Tung -->
+<!-- This is some helper function code needed to delete a review -->
+<!-- Functionality Set 4 -->
 
 <?php
 // establish database connection here
