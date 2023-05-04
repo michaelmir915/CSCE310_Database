@@ -24,6 +24,18 @@
 			</thead>
 			<tbody>
 			<?php
+				// // Initialize the session
+				// session_start();
+
+				// // Include config file
+				// require_once "config.php";
+
+				// //Forces Login
+				// // Check if the user is logged in, otherwise redirect to login page
+				// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+				//     header("location: login.php");
+				//     exit;
+				// }
 				// Connect to the MySQL database
 				$servername = "localhost";
 				$username = "root";
@@ -148,7 +160,7 @@
 				    	echo "</tr>";
 						$total += $row["COST"];
 				  	}
-					echo "<h3>Total: $$total</h2>";
+					echo "<h2>Total: $$total</h2>";
 				} else {
 				    echo "0 results";
 				}

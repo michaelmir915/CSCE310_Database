@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2023 at 05:00 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 05, 2023 at 12:48 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -146,10 +146,17 @@ CREATE TABLE `food_list` (
 
 CREATE TABLE `guest` (
   `USERNAME` varchar(48) NOT NULL,
-  `CC_NUMBER` int(11) NOT NULL,
+  `CC_NUMBER` tinytext NOT NULL,
   `CC_CCV` int(11) NOT NULL,
-  `CC_EXP` int(11) NOT NULL
+  `CC_EXP` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guest`
+--
+
+INSERT INTO `guest` (`USERNAME`, `CC_NUMBER`, `CC_CCV`, `CC_EXP`) VALUES
+('regularUser', '2250894712345647', 456, '04/22');
 
 -- --------------------------------------------------------
 
@@ -189,7 +196,7 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `room`
+-- Dumping data for table `review`
 --
 
 INSERT INTO `review` (`REVIEW_ID`, `LOCATION_NUMBER`, `USERNAME`, `REVIEW_TITLE`, `REVIEW_RATING`, `REVIEW_BODY`, `REVIEW_TIME_OF_STAY`, `REVIEW_DAYS_STAYED`, `REVIEW_TIME_CREATED`, `REVIEW_HELPFUL`) VALUES 
@@ -245,7 +252,7 @@ INSERT INTO `room` (`LOCATION_NUM`, `ROOM_NUMBER`, `ROOM_TYPE`, `ROOM_COST`, `BO
 --
 
 CREATE TABLE `user_hotel` (
-  `ACCOUNT_NUMBER` int(11) NOT NULL,
+  `ACCOUNT_NUMBER` bigint(255) NOT NULL,
   `USERNAME` varchar(48) NOT NULL,
   `EMPLOYEE_NUMBER` int(11) DEFAULT NULL,
   `PASSWORD` tinytext NOT NULL,
@@ -255,6 +262,15 @@ CREATE TABLE `user_hotel` (
   `USER_AREA_CODE` int(11) NOT NULL,
   `USER_NUMBER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_hotel`
+--
+
+INSERT INTO `user_hotel` (`ACCOUNT_NUMBER`, `USERNAME`, `EMPLOYEE_NUMBER`, `PASSWORD`, `FIRST_NAME`, `LAST_NAME`, `USER_EMAIL`, `USER_AREA_CODE`, `USER_NUMBER`) VALUES
+(1, 'admin', 0, '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Boss', 'Man', 'bossMan@demo.hotel.com', 800, 5555829),
+(2, 'regularUser', NULL, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Regular', 'User', 'regulardude@rmail.com', 123, 4567890),
+(3, 'mykel', NULL, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Mykel', 'NoLast', 'mykel@defReal.email.gov', 987, 6543210);
 
 --
 -- Indexes for dumped tables
@@ -329,6 +345,12 @@ ALTER TABLE `user_hotel`
 --
 ALTER TABLE `booking`
   MODIFY `BOOKING_KEY` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `user_hotel`
+--
+ALTER TABLE `user_hotel`
+  MODIFY `ACCOUNT_NUMBER` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
