@@ -57,8 +57,8 @@
     <?php
         // Database connection code
         $dbhost = "localhost";
-        $dbuser = "alex9947";
-        $dbpass = "alex9947";
+        $dbuser = "root";
+        $dbpass = "";
         $db = "hotel";
 
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
@@ -112,8 +112,8 @@
 		<?php
 			// Database connection code
             $dbhost = "localhost";
-            $dbuser = "alex9947";
-            $dbpass = "alex9947";
+            $dbuser = "root";
+            $dbpass = "";
             $db = "hotel";
 
 			$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
