@@ -50,9 +50,11 @@
 				        // echo '<td><input type="number" value="0"></td>';
 				        // echo '<td><button>Add to cart</button></td>';
 						echo '<td>
-              					<form method="post">
+              					<form method="POST">
+									<input type="hidden" name="LocationNumber" value="' . $row["LOCATION_NUMBER"] . '">
+									<input type="hidden" name="itemNumber" value="' . $row["ITEM_NUMBER"] . '">
               					    <input type="hidden" name="itemName" value="' . $row["FOOD_NAME"] . '">
-              					    <button type="addToCart">Add to cart</button>
+              					    <button type="submit" name="addToCart">Add to cart</button>
               					</form>
           					 </td>';
 				        echo "</tr>";
@@ -60,26 +62,39 @@
 				} else {
 				    echo "0 results";
 				}
-				
-				// if (isset($_POST['addToCart'])){
-				// 	$sql = 
-				//Need to know current guest to attribute to room number
-				// 	$location_number = 
-				// 	$item_number = 
-				// 	$order_number = 
-				// 	$room_number  = 
-				// }
+				if (isset($_POST['addToCart'])){
+					$location_number = $_POST["LocationNumber"];
+					$itemName = $_POST['itemName'];
+					$itemNumber = $_POST['itemNumber'];
+					$result = mysqli_query($conn, "SELECT MAX(ORDER_NUMBER) FROM food_list WHERE LOCATION_NUMBER = $location_number");
+					if ($result !== false) {
+					    $row = mysqli_fetch_row($result);
+					    $prevOrderNum = $row[0] ?? 0;
+					} else {
+					    echo "Error: " . mysqli_error($conn);
+					    $prevOrderNum = 0;
+					}
+					$orderNum = $prevOrderNum + 1;
+					// echo '<script>alert("' . $location_number . ' LOCATION NUMBER \n Order Number: '. $orderNum .'")</script>';
+					//Insert order into food_list
+					$sql = "INSERT INTO food_list (LOCATION_NUMBER, ORDER_NUMBER, ITEM_NUMBER, ROOM_NUMBER) VALUES ('$location_number', '$orderNum', '$itemNumber', '1')";
+					// echo '<script>alert("' . $sql . '")</script>';
+					// echo '<script>alert("HERE")</script>';
+					$result = mysqli_query($conn, $sql);
+					echo '<script>alert("' . $itemName . ' added to cart! \n Order Number: '. $orderNum .'")</script>';
+
+				}
 
 				mysqli_close($conn);
 			?>
 			</tbody>
 		</table>
-		<h2>Amenities</h2>
+		<h2>Hotel Amenities</h2>
 		<table>
 			<thead>
 				<tr>
 					<th>Item</th>
-					<th>Availability</th>
+					<th>Availabile:</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -106,9 +121,13 @@
 				    while($row = mysqli_fetch_assoc($result)) {
 				        echo "<tr>";
 				        echo "<td>" . $row["DESCRIPTION"] . "</td>";
-				        echo "<td>" . $row["AVAILABILITY"] . "</td>";
-				        // echo '<td><input type="number" value="0"></td>';
-						echo "<td><button>Check Out</button></td>";
+				        // echo "<td>" . $row["AVAILABILITY"] . "</td>";
+						if ($row["AVAILABILITY"] == 1){
+							echo "<td>Yes</td>";
+						} else {
+							echo "<td>No</td>";
+						}
+						// echo "<td><button>Check Out</button></td>";
 				    	echo "</tr>";
 				  	}
 
@@ -121,6 +140,10 @@
 		<button>View Cart</button>
 	</main>
 </body>
+
+<footer>
+  <p>&copy; 2023 Spynx Inc. All rights reserved. For Copyright concerns, please contact CEO Christopher Lanclos.</p>
+</footer>
 </html>
 <?php
   // Close the database connection
