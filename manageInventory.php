@@ -11,8 +11,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || is_null($_
     header("location: login.php");
     exit;
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
