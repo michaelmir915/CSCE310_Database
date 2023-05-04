@@ -1,4 +1,19 @@
+<?php
+// Initialize the session
+session_start();
 
+// Include config file
+require_once "config.php";
+
+//Employee Force Login
+// Check if the user is logged in, otherwise redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || is_null($_SESSION["id"])){
+    header("location: login.php");
+    exit;
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
