@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <header>
-        <a class="active" href="welcome.php">Welcome</a>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
-        <a href="manageAccounts.php">Manage Account</a>
-        <a href="updateaccount.php">Update Account</a>
-        <a href="review.php">Reviews</a>
-        <a href="newBookings.php">New Bookings</a>
-        <a href="currentBookings.php">Current Bookings</a>
-        <a href="roomCharges.php">Room Charges</a>
-        <a href="manageBooking.php">Manage Booking</a>
-        <a href="manageInventory.php">Manage Inventory</a>
-    </header>
 	<title>Search Results</title>
 	<link rel="stylesheet" href="./roomCharges.css" type="text/css">
 </head>
 <body>
 <?php
-
-$connection = mysqli_connect("localhost", "root", "", "hotel");
-// Check connection
-if (!$connection) {
-  die("Connection failed: " . mysqli_connect_error());
+include 'navbar.php';
+//Forces Login
+// Check if the user is logged in, otherwise redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
 }
+$username = $_SESSION["username"]
+
+
 // Retrieve the form values
 // Retrieve the form values
 $room_number = isset($_POST['room_number']) ? $_POST['room_number'] : null;
@@ -35,8 +26,8 @@ $location_number = isset($_POST['location_number']) ? $_POST['location_number'] 
 
 // Insert the booking into the database
 if ($room_number && $checkin && $checkout && $booking_cost && $location_number) {
-    $query = "INSERT INTO booking (room_number, booking_start, booking_end, booking_cost, username, location_number) VALUES ('$room_number', '$checkin', '$checkout', '$booking_cost', 'Mykell', '$location_number')";
-    $result = mysqli_query($connection, $query);
+    $query = "INSERT INTO booking (room_number, booking_start, booking_end, booking_cost, username, location_number) VALUES ('$room_number', '$checkin', '$checkout', '$booking_cost', '$username', '$location_number')";
+    $result = mysqli_query($link, $query);
 
     if ($result) {
         // Booking was successful
@@ -44,7 +35,7 @@ if ($room_number && $checkin && $checkout && $booking_cost && $location_number) 
 
         // Retrieve all of the user's bookings from the database
         $query = "SELECT * FROM booking WHERE username = 'MyKell'";
-        $result = mysqli_query($connection, $query);
+        $result = mysqli_query($link, $query);
 
         // Display the user's bookings
         echo "<h2>Your Bookings</h2>";
@@ -56,7 +47,7 @@ if ($room_number && $checkin && $checkout && $booking_cost && $location_number) 
                 echo "Room Number: " . $row['ROOM_NUMBER'] . "<br>";
                 echo "Start Date: " . $row['BOOKING_START'] . "<br>";
                 echo "End Date: " . $row['BOOKING_END'] . "<br>";
-                echo '<form action="currentBookings.php" method="post">';
+                echo '<form action="currentBooking.php" method="post">';
                 echo '<input type="hidden" name="booking_key" value="'.$row['BOOKING_KEY'].'">';
                 echo '<input type="submit" name="cancel_booking" value="Cancel Booking">';
                 echo '</form><br><br>';
@@ -72,7 +63,7 @@ if ($room_number && $checkin && $checkout && $booking_cost && $location_number) 
 } else {
     // Form values not set
     $query = "SELECT * FROM booking WHERE username = 'MyKell'";
-    $result = mysqli_query($connection, $query);
+    $result = mysqli_query($link, $query);
      // Display the user's bookings
      echo "<h2>Your Bookings</h2>";
      if (mysqli_num_rows($result) > 0) {
@@ -98,7 +89,7 @@ if ($room_number && $checkin && $checkout && $booking_cost && $location_number) 
 if (isset($_POST['cancel_booking'])) {
     $booking_key = $_POST['booking_key'];
     $query = "DELETE FROM booking WHERE booking_key = '$booking_key'";
-    $result = mysqli_query($connection, $query);
+    $result = mysqli_query($link, $query);
 
     if ($result) {
         // Booking was canceled
@@ -111,8 +102,8 @@ if (isset($_POST['cancel_booking'])) {
 }
 
 // Close the database connection
-if ($connection !== null) {
-    mysqli_close($connection);
+if ($link !== null) {
+    mysqli_close($link);
 }
 
 

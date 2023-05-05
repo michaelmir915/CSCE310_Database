@@ -2,19 +2,6 @@
 <!-- MANAGER PAGE -->
 <html>
 <head>
-	<header>
-        <a class="active" href="welcome.php">Welcome</a>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
-        <a href="manageAccounts.php">Manage Account</a>
-        <a href="updateaccount.php">Update Account</a>
-        <a href="review.php">Reviews</a>
-        <a href="newBookings.php">New Bookings</a>
-        <a href="currentBookings.php">Current Bookings</a>
-        <a href="roomCharges.php">Room Charges</a>
-        <a href="manageBooking.php">Manage Booking</a>
-        <a href="manageInventory.php">Manage Inventory</a>
-    </header>
 	<title>Search Results</title>
   <!-- <link rel="stylesheet" href="nmanageBookings.css">
   <link href="./manageBookings.css" rel="stylesheet" /> -->
@@ -22,6 +9,9 @@
 	
 </head>
 <body>
+	<?php
+include 'navbar.php';
+?>
 	<h1>Booking Management</h1>
 	
 	<!-- Form for adding notes to a booking -->
@@ -49,17 +39,19 @@
 			<th>Room_Number</th>
 		</tr>
 		<?php
-		//Employee Force Login
+		
+
+
+		//Forces Login
 		// Check if the user is logged in, otherwise redirect to login page
-			
-    $connection = mysqli_connect("localhost", "root", "", "hotel");
-    // Check connection
-    if (!$connection) {
-      die("Connection failed: " . mysqli_connect_error());
-    }
+		if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+			header("location: login.php");
+			exit;
+		}
+		
 		// Retrieve all of the user's bookings from the database
 		$query = "SELECT * FROM booking";
-		$result = mysqli_query($connection, $query);
+		$result = mysqli_query($link, $query);
 
 		if (mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_assoc($result)) {
@@ -75,7 +67,7 @@
 				echo "<td>" . $row['LOCATION_NUMBER'] . "</td>";
 				echo "<td>" . $row['ROOM_NUMBER'] . "</td>";
 				echo "<td>";
-				echo "<form method='post' action='manageBookings.php'>";
+				echo "<form method='post' action='manageBooking.php'>";
 				echo "<input type='hidden' name='booking_key' value='" . $row['BOOKING_KEY'] . "'>";
 				echo "<input type='submit' name='cancel_booking' value='Cancel Booking'>";
 				echo "</form>";
@@ -91,12 +83,12 @@
 		if (isset($_POST['cancel_booking'])) {
 			$booking_key = $_POST['booking_key'];
 			$query = "DELETE FROM booking WHERE booking_key = '$booking_key'";
-			$result = mysqli_query($connection, $query);
+			$result = mysqli_query($link, $query);
 		
 			if ($result) {
 				// Booking was canceled
 				echo '<script>alert("Booking Cancelled")</script>';
-				echo "<meta http-equiv='refresh' content='0;url=manageBookings.php'>";
+				echo "<meta http-equiv='refresh' content='0;url=manageBooking.php'>";
 			} else {
 				// Cancellation failed
 				echo '<script>alert("Cancellation Failed")</script>';
@@ -108,7 +100,7 @@
 
     // Update the booking_notes column in the booking table
     $query = "UPDATE booking SET booking_notes='$booking_notes' WHERE booking_key='$booking_key'";
-    $result = mysqli_query($connection, $query);
+    $result = mysqli_query($link, $query);
 
     if ($result) {
       echo '<script>alert("Note added successfully.")</script>';
@@ -119,8 +111,8 @@
   }
 
   // Close the database connection
-  if ($connection !== null) {
-    mysqli_close($connection);
+  if ($link !== null) {
+    mysqli_close($link);
   }
   ?>
 </table>
