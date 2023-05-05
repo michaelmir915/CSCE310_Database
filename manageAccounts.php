@@ -9,7 +9,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || is_null($_
 }
 
 //Decalre Variables
-$empid = $empPay = $empNotes = $empHours = $accountid = $manager = $location = $fire = $hire = $empemail = $position = "";
+$empid = $empPay = $empNotes = $empHours = $accountid = $manager = $location = $fire = $empemail = $position = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -67,8 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         //hiring
         if(mysqli_num_rows($result) == 0){
-            $hire = date("m/d/Y");
-            $sql = "INSERT INTO employee (EMPLOYEE_NUMBER, IS_MANAGER, POSITION, EMPLOYEE_PAY, EMPLOYEE_HIRE_DATE, EMPLOYEE_NOTES, EMPLOYEE_STANDARD_HOURS, LOCATION_NUM, EMPLOYEE_EMAIL) VALUES ($empid, $manager, '$position', $empPay, $hire, '$empNotes', '$empHours', $location, '$empemail')";
+            $sql = "INSERT INTO employee (EMPLOYEE_NUMBER, IS_MANAGER, POSITION, EMPLOYEE_PAY, EMPLOYEE_NOTES, EMPLOYEE_STANDARD_HOURS, LOCATION_NUM, EMPLOYEE_EMAIL) VALUES ($empid, $manager, '$position', $empPay, '$empNotes', '$empHours', $location, '$empemail')";
             $result = mysqli_query($link, $sql);
 
             $sql2 = "UPDATE user_hotel SET EMPLOYEE_NUMBER = $empid WHERE ACCOUNT_NUMBER = $accountid";
