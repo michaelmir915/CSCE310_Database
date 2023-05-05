@@ -2,6 +2,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<header>
+        <a class="active" href="welcome.php">Welcome</a>
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+        <a href="manageAccounts.php">Manage Account</a>
+        <a href="updateaccount.php">Update Account</a>
+        <a href="review.php">Reviews</a>
+        <a href="newBookings.php">New Bookings</a>
+        <a href="currentBookings.php">Current Bookings</a>
+        <a href="roomCharges.php">Room Charges</a>
+        <a href="manageBooking.php">Manage Booking</a>
+        <a href="manageInventory.php">Manage Inventory</a>
+    </header>
 	<title>Room Service Menu</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

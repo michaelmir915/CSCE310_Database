@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="roomCharges.css" type="text/css">
 </head>
 <body>
+
+    <header>
+        <a class="active" href="welcome.php">Welcome</a>
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+        <a href="manageAccounts.php">Manage Account</a>
+        <a href="updateaccount.php">Update Account</a>
+        <a href="review.php">Reviews</a>
+        <a href="newBookings.php">New Bookings</a>
+        <a href="currentBookings.php">Current Bookings</a>
+        <a href="roomCharges.php">Room Charges</a>
+        <a href="manageBooking.php">Manage Booking</a>
+        <a href="manageInventory.php">Manage Inventory</a>
+    </header>
+
 	<h1>Hotel Customer Reviews</h1>
 
 	<!-- Add review form -->
@@ -57,18 +72,6 @@
 
 
     <?php
-        // // Initialize the session
-        // session_start();
-        
-        // // Include config file
-        // require_once "config.php";
-
-        // //Employee Force Login
-        // // Check if the user is logged in, otherwise redirect to login page
-        // if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || is_null($_SESSION[])){
-        //     header("location: login.php");
-        //     exit;
-        // }
 
         // Database connection code
         $dbhost = "localhost";
