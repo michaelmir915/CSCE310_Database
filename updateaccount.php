@@ -50,6 +50,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
+    $sql = "SELECT * FROM user_hotel WHERE ACCOUNT_NUMBER = $accNum";
+    $resultUser = mysqli_query($link, $sql);
+
     if($row = mysqli_fetch_assoc($resultUser)){
         $new_password = trim($_POST['new_password']);
         $first_Name = trim($_POST["first_Name"]);

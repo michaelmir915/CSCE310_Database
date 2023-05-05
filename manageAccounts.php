@@ -25,6 +25,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $manager = trim($_POST["manager"]);
     if(empty($manager)){
         $manager = NULL;
+    } else {
+        $manager = 1;
     }
     $fire = trim($_POST["fire"]);
     //fire someone
@@ -65,10 +67,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
 
+        $mw = "here";
+
         //hiring
         if(mysqli_num_rows($result) == 0){
-            $sql = "INSERT INTO employee (EMPLOYEE_NUMBER, IS_MANAGER, POSITION, EMPLOYEE_PAY, EMPLOYEE_NOTES, EMPLOYEE_STANDARD_HOURS, LOCATION_NUM, EMPLOYEE_EMAIL) VALUES ($empid, $manager, '$position', $empPay, '$empNotes', '$empHours', $location, '$empemail')";
+            $sql = "INSERT INTO employee (EMPLOYEE_NUMBER, IS_MANAGER, POSITION, EMPLOYEE_PAY, EMPLOYEE_NOTES, EMPLOYEE_STANDARD_HOURS, LOCATION_NUM, EMPLOYEE_EMAIL) VALUES ($empid, '$manager', '$position', $empPay, '$empNotes', '$empHours', $location, '$empemail')";
             $result = mysqli_query($link, $sql);
+            
 
             $sql2 = "UPDATE user_hotel SET EMPLOYEE_NUMBER = $empid WHERE ACCOUNT_NUMBER = $accountid";
             $result2 = mysqli_query($link, $sql2);
@@ -164,7 +169,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     echo "Employee email: " . $row["EMPLOYEE_EMAIL"] . "<br>";
                     echo "Is Manager: " . $row["IS_MANAGER"] . "<br>";
                     echo "Location Number: " . $row["LOCATION_NUM"] . "<br>";
-                    echo "Hire Date: " . $row["EMPLOYEE_HIRE_DATE"] . "<br>";
                     echo "Payment: " . $row["EMPLOYEE_PAY"] . "<br>";
                     echo "Notes: " . $row["EMPLOYEE_NOTES"] . "<br>";
                     echo "<br>";

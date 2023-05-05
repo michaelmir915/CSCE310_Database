@@ -47,7 +47,7 @@ if ($room_number && $checkin && $checkout && $booking_cost && $location_number) 
                 echo "Room Number: " . $row['ROOM_NUMBER'] . "<br>";
                 echo "Start Date: " . $row['BOOKING_START'] . "<br>";
                 echo "End Date: " . $row['BOOKING_END'] . "<br>";
-                echo '<form action="currentBooking.php" method="post">';
+                echo '<form action="currentBookings.php" method="post">';
                 echo '<input type="hidden" name="booking_key" value="'.$row['BOOKING_KEY'].'">';
                 echo '<input type="submit" name="cancel_booking" value="Cancel Booking">';
                 echo '</form><br><br>';
