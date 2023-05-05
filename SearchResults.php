@@ -7,6 +7,16 @@
 <body>
   <h2><b> Search Results </b> </h2>
 <?php
+  include 'navbar.php';
+
+
+  //Forces Login
+  // Check if the user is logged in, otherwise redirect to login page
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+      header("location: login.php");
+      exit;
+  }
+
   //Employee Force Login
   // Check if the user is logged in, otherwise redirect to login page
 
@@ -14,11 +24,7 @@
   $checkin = $_POST['checkin'];
   $checkout = $_POST['checkout'];
 
-  $connection = mysqli_connect("localhost", "root", "", "hotel");
-			// Check connection
-			if (!$connection) {
-				die("Connection failed: " . mysqli_connect_error());
-			}
+
   
   // Query the database for available rooms
   $query = "SELECT room.*, room.room_cost
@@ -28,7 +34,7 @@
               AND booking.booking_start <= '$checkout'
               AND booking.booking_end >= '$checkin'
             WHERE booking.room_number IS NULL";
-  $result = mysqli_query($connection, $query);
+  $result = mysqli_query($link, $query);
 
   // Display the available rooms
   if (mysqli_num_rows($result) > 0) {
@@ -59,8 +65,8 @@
   }
 
 
-  if ($connection !== null) {
-    mysqli_close($connection);
+  if ($link !== null) {
+    mysqli_close($link);
   }
 
     ?>
