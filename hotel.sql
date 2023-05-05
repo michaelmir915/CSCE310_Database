@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 12:48 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 05, 2023 at 05:21 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -66,7 +66,8 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`BOOKING_KEY`, `USERNAME`, `BOOKING_COST`, `BOOKING_START`, `BOOKING_END`, `BOOKING_NOTES`, `BOOKING_FOOD`, `LOCATION_NUMBER`, `ROOM_NUMBER`) VALUES
-(1, 'MyKell', 149.99, '2023-05-03', '2023-05-08', 'Hate this room\r\n', 0, 1, '101');
+(18, 'mykel', 149.99, '2023-05-05', '2023-05-10', '', 0, 1, '101'),
+(19, 'mykel', 249.99, '2023-05-04', '2023-05-11', '', 0, 1, '103');
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,7 @@ CREATE TABLE `employee` (
   `IS_MANAGER` int(11) DEFAULT NULL,
   `POSITION` tinytext NOT NULL,
   `EMPLOYEE_PAY` double DEFAULT NULL,
-  `EMPLOYEE_HIRE_DATE` date NOT NULL,
+  `EMPLOYEE_HIRE_DATE` date NOT NULL DEFAULT current_timestamp(),
   `EMPLOYEE_NOTES` mediumtext NOT NULL,
   `EMPLOYEE_ADRESS` mediumtext NOT NULL,
   `EMPLOYEE_STANDARD_HOURS` tinytext NOT NULL,
@@ -183,7 +184,7 @@ CREATE TABLE `hotel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
--- --------------------ALEX TUNG---------------------------
+
 --
 -- Table structure for table `review`
 --
@@ -205,7 +206,7 @@ CREATE TABLE `review` (
 -- Dumping data for table `review`
 --
 
-INSERT INTO `review` (`REVIEW_ID`, `LOCATION_NUMBER`, `USERNAME`, `REVIEW_TITLE`, `REVIEW_RATING`, `REVIEW_BODY`, `REVIEW_TIME_OF_STAY`, `REVIEW_DAYS_STAYED`, `REVIEW_TIME_CREATED`, `REVIEW_HELPFUL`) VALUES 
+INSERT INTO `review` (`REVIEW_ID`, `LOCATION_NUMBER`, `USERNAME`, `REVIEW_TITLE`, `REVIEW_RATING`, `REVIEW_BODY`, `REVIEW_TIME_OF_STAY`, `REVIEW_DAYS_STAYED`, `REVIEW_TIME_CREATED`, `REVIEW_HELPFUL`) VALUES
 (1, 1, 'smittylife', 'Great hotel', 5, 'I had an amazing stay at this hotel. The staff was friendly, the rooms were clean and comfortable, and the location was perfect.', '2022-03-15', 3, '2022-03-20', 10),
 (2, 4, 'lilybelle33', 'Disappointing experience', 2, 'I was very disappointed with my stay at this hotel. The room was dirty, the staff was unfriendly, and the amenities were not as advertised.', '2022-04-01', 2, '2022-04-03', 2),
 (3, 5, 'thecoffeeguru', 'Average hotel', 3, 'This hotel was okay. The room was clean but small, and the staff was average. The location was convenient, but there were some issues with noise.', '2022-05-10', 5, '2022-05-13', 5),
@@ -277,7 +278,8 @@ INSERT INTO `user_hotel` (`ACCOUNT_NUMBER`, `USERNAME`, `EMPLOYEE_NUMBER`, `PASS
 (1, 'admin', 0, '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Boss', 'Man', 'bossMan@demo.hotel.com', 800, 5555829),
 (2, 'regularUser', NULL, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Regular', 'User', 'regulardude@rmail.com', 123, 4567890),
 (3, 'mykel', NULL, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Mykel', 'NoLast', 'mykel@defReal.email.gov', 987, 6543210),
-(4, 'empDude', 1, '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Employee', 'Dude', 'workinghere@hotel.com', 654, 1568316);
+(4, 'empDude', 1, '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Employee', 'Dude', 'workinghere@hotel.com', 654, 1568316),
+(5, 'gyarut', NULL, '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Garrett', 'TheBest', 'YoudaBest@garrett.fake', 444, 9998888);
 
 --
 -- Indexes for dumped tables
@@ -351,13 +353,13 @@ ALTER TABLE `user_hotel`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `BOOKING_KEY` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `BOOKING_KEY` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_hotel`
 --
 ALTER TABLE `user_hotel`
-  MODIFY `ACCOUNT_NUMBER` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ACCOUNT_NUMBER` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

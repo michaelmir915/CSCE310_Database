@@ -13,7 +13,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-$username = $_SESSION["username"]
+$username = $_SESSION["username"];
 
 
 // Retrieve the form values
@@ -34,7 +34,7 @@ if ($room_number && $checkin && $checkout && $booking_cost && $location_number) 
         echo "Booking successful!";
 
         // Retrieve all of the user's bookings from the database
-        $query = "SELECT * FROM booking WHERE username = 'MyKell'";
+        $query = "SELECT * FROM booking WHERE username = '$username'";
         $result = mysqli_query($link, $query);
 
         // Display the user's bookings
@@ -62,7 +62,7 @@ if ($room_number && $checkin && $checkout && $booking_cost && $location_number) 
     }
 } else {
     // Form values not set
-    $query = "SELECT * FROM booking WHERE username = 'MyKell'";
+    $query = "SELECT * FROM booking WHERE username = '$username'";
     $result = mysqli_query($link, $query);
      // Display the user's bookings
      echo "<h2>Your Bookings</h2>";
