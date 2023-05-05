@@ -7,16 +7,34 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
- 
+
 // Include config file
 require_once "config.php";
  
 // Define variables and initialize with empty values
+$username = $_SESSION["username"];
+$accNum = $_SESSION["acc"];
 $new_password = $confirm_password = $first_Name = $last_Name = $email = $area_code = $phone_number = $cc_number = $cc_exp = $cc_cvc = "";
 $sys_err = $new_password_err = $confirm_password_err = $first_Name_err = $last_Name_err = $email_err = $area_code_err = $phone_number_err = $cc_number_err = $cc_exp_err = $cc_cvc_err = "";
  
+
+$sql = "SELECT * FROM user_hotel WHERE ACCOUNT_NUMBER = $accNum";
+$resultUser = mysqli_query($link, $sql);
+if(mysqli_num_rows($resultUser) != 1){
+    echo "<tr><th>internal error</th></tr><br>";
+} else {
+    if($row = mysqli_fetch_assoc($resultUser)){
+        $first_Name = $row['FIRST_NAME'];
+        $last_Name = $row['LAST_NAME'];
+        $email = $row['USER_EMAIL'];
+        $area_code = $row['USER_AREA_CODE'];
+        $phone_number = $row['USER_NUMBER'];
+    }
+}
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
     // Validate new password
     if(empty(trim($_POST["new_password"]))){
         $new_password_err = "Please enter the new password.";     
@@ -36,14 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    $accNum = $_SESSION["acc"];
-    $sql = "SELECT * FROM user_hotel WHERE ACCOUNT_NUMBER = $accNum";
-    $result = mysqli_query($link, $sql);
-    if(mysqli_num_rows($result) != 1){
-        echo "<tr><th>internal error</th></tr><br>";
-    }
-
-    if($row = mysqli_fetch_assoc($result)){
+    if($row = mysqli_fetch_assoc($resultUser)){
         $new_password = trim($_POST['new_password']);
         $first_Name = trim($_POST["first_Name"]);
         $last_Name = trim($_POST["last_Name"]);
@@ -56,22 +67,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $hash_password = hash('sha256', $new_password);
 
-        $username = $_SESSION["username"];
-
         if(empty($first_Name)){
             $first_Name = $row['FIRST_NAME'];
         }
         if(empty($last_Name)){
-            $first_Name = $row['LAST_NAME'];
+            $last_Name = $row['LAST_NAME'];
         }
         if(empty($email)){
-            $first_Name = $row['USER_EMAIL'];
+            $email = $row['USER_EMAIL'];
         }
         if(empty($area_code)){
-            $first_Name = $row['USER_AREA_CODE'];
+            $area_code = $row['USER_AREA_CODE'];
         }
         if(empty($phone_number)){
-            $first_Name = $row['USER_NUMBER'];
+            $phone_number = $row['USER_NUMBER'];
         }
 
         // Prepare an update statement
@@ -124,6 +133,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Update Account Info</h2>
         <p>Please fill out this form to update your account's info</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+            <div class="form-group">
+                <label>Username</label>
+                <span class="form-control"> <?php echo $username; ?> </span>
+            </div>
             <div class="form-group">
                 <label>New Password</label>
                 <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
@@ -182,18 +195,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>    
 </body>
 </html>
-<!--UPDATE `user_hotel` SET `USER_AREA_CODE` = '456', `USER_NUMBER` = '1237890' WHERE `user_hotel`.`ACCOUNT_NUMBER` = 2; -->
-<!--
-<div class="wrapper">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
-        </form>
-    </div>
--->
