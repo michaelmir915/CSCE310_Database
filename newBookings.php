@@ -1,20 +1,11 @@
+<?php
+include 'navbar.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<header>
-        <a class="active" href="welcome.php">Welcome</a>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
-        <a href="manageAccounts.php">Manage Account</a>
-        <a href="updateaccount.php">Update Account</a>
-        <a href="review.php">Reviews</a>
-        <a href="newBookings.php">New Bookings</a>
-        <a href="currentBookings.php">Current Bookings</a>
-        <a href="roomCharges.php">Room Charges</a>
-        <a href="manageBooking.php">Manage Booking</a>
-        <a href="manageInventory.php">Manage Inventory</a>
-    </header>
 	<title>Create a new booking!</title>
 	<link rel="stylesheet" href="./roomCharges.css" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

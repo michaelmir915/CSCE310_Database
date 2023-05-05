@@ -1,6 +1,5 @@
 <?php
-// Initialize the session 
-session_start();
+include 'navbar.php';
 
 //Manager Force Login
 // Check if the user is logged in, otherwise redirect to login page
@@ -8,9 +7,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || is_null($_
     header("location: login.php");
     exit;
 }
-
-// Include config file
-require_once "config.php";
 
 //Decalre Variables
 $empid = $empPay = $empNotes = $empHours = $accountid = $manager = $location = $fire = $hire = $empemail = $position = "";
