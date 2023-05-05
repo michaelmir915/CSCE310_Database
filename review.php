@@ -2,6 +2,9 @@
 <!-- This code allows the customer to view, add, update and delete reviews  -->
 <!-- Functionality Set 4 -->
 
+<?php
+    include 'navbar.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,20 +12,6 @@
     <link rel="stylesheet" href="roomCharges.css" type="text/css">
 </head>
 <body>
-
-    <header>
-        <a class="active" href="welcome.php">Welcome</a>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
-        <a href="manageAccounts.php">Manage Account</a>
-        <a href="updateaccount.php">Update Account</a>
-        <a href="review.php">Reviews</a>
-        <a href="newBookings.php">New Bookings</a>
-        <a href="currentBookings.php">Current Bookings</a>
-        <a href="roomCharges.php">Room Charges</a>
-        <a href="manageBooking.php">Manage Booking</a>
-        <a href="manageInventory.php">Manage Inventory</a>
-    </header>
 
 	<h1>Hotel Customer Reviews</h1>
 
@@ -72,7 +61,6 @@
 
 
     <?php
-
         // Database connection code
         $dbhost = "localhost";
         $dbuser = "alex9947";
