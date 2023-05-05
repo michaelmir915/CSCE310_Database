@@ -21,6 +21,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || is_null($_
 	<link rel="stylesheet" href="\manageInventory.css" type="text/css">
 </head>
 <body>
+<?php
+include 'navbar.php';
+?>
 	<header>
 		<h1>Hotel Food Inventory</h1>
 	</header>
