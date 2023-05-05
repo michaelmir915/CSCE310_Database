@@ -24,6 +24,20 @@ if(is_null($_SESSION["id"])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <header>
+        <a class="active" href="welcome.php">Welcome</a>
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+        <a href="manageAccounts.php">Manage Account</a>
+        <a href="updateaccount.php">Update Account</a>
+        <a href="review.php">Reviews</a>
+        <a href="newBookings.php">New Bookings</a>
+        <a href="currentBookings.php">Current Bookings</a>
+        <a href="roomCharges.php">Room Charges</a>
+        <a href="manageBooking.php">Manage Booking</a>
+        <a href="manageInventory.php">Manage Inventory</a>
+    </header>
+
     <meta charset="UTF-8">
     <title>Welcome</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

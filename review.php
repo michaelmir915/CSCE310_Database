@@ -1,4 +1,6 @@
 <!-- Alex Tung -->
+<!-- This code allows the customer to view, add, update and delete reviews  -->
+<!-- Functionality Set 4 -->
 
 <!DOCTYPE html>
 <html>
@@ -7,6 +9,21 @@
     <link rel="stylesheet" href="roomCharges.css" type="text/css">
 </head>
 <body>
+
+    <header>
+        <a class="active" href="welcome.php">Welcome</a>
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+        <a href="manageAccounts.php">Manage Account</a>
+        <a href="updateaccount.php">Update Account</a>
+        <a href="review.php">Reviews</a>
+        <a href="newBookings.php">New Bookings</a>
+        <a href="currentBookings.php">Current Bookings</a>
+        <a href="roomCharges.php">Room Charges</a>
+        <a href="manageBooking.php">Manage Booking</a>
+        <a href="manageInventory.php">Manage Inventory</a>
+    </header>
+
 	<h1>Hotel Customer Reviews</h1>
 
 	<!-- Add review form -->
@@ -55,10 +72,11 @@
 
 
     <?php
+
         // Database connection code
         $dbhost = "localhost";
-        $dbuser = "root";
-        $dbpass = "";
+        $dbuser = "alex9947";
+        $dbpass = "alex9947";
         $db = "hotel";
 
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
@@ -112,8 +130,8 @@
 		<?php
 			// Database connection code
             $dbhost = "localhost";
-            $dbuser = "root";
-            $dbpass = "";
+            $dbuser = "alex9947";
+            $dbpass = "alex9947";
             $db = "hotel";
 
 			$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);

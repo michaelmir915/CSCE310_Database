@@ -1,11 +1,13 @@
 <!-- Alex Tung -->
+<!-- This is some helper function code needed to delete a review -->
+<!-- Functionality Set 4 -->
 
 <?php
 // establish database connection here
 
 $dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
+$dbuser = "alex9947";
+$dbpass = "alex9947";
 $db = "hotel";
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
